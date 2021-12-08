@@ -2,15 +2,31 @@ package com.devsuperior.aula.dto;
 
 import java.time.Instant;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
 import com.devsuperior.aula.entities.User;
 
 public class UserDTO {
 
 	private Long id;
+	
+	@NotBlank(message = "Valor não pode ser nulo ou vazio")
 	private String name;
+	
+	@Email(message = "Campo de email inválido")
 	private String email;
+	
+	@Size(min = 8, max = 16, message = "Campo phone deve ter entre 9 e 16 caracteres")
 	private String phone;
+	
+	@PastOrPresent(message = "Campo de data inválida")
 	private Instant birthDate;
+	
+	@Positive(message = "Campo saldo deve ser positivo")
 	private Double balance;
 	
 	public UserDTO() {
